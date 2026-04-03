@@ -1,6 +1,6 @@
-# Meeting Cost Clock
+# Burn Rate
 
-Meeting Cost Clock is a Flutter app for iOS, Android, and web that turns a meeting into a live cost meter.
+Burn Rate is a Flutter app for iOS, Android, and web that turns a meeting into a live cost meter.
 
 ## What it does
 
@@ -19,7 +19,7 @@ flutter run
 To open the iOS project in Xcode, use:
 
 ```bash
-open ios/Runner.xcworkspace
+open ios/BurnRate.xcworkspace
 ```
 
 ## Web deployment on Vercel

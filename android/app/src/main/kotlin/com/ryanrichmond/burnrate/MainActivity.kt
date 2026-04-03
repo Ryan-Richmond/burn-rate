@@ -1,4 +1,4 @@
-package com.ryanrichmond.meeting_cost_clock
+package com.ryanrichmond.burnrate
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -21,6 +21,7 @@ class _MeetingCostScreenState extends State<MeetingCostScreen> {
   DateTime? _runningStartedAt;
   Duration _elapsedBeforeRun = Duration.zero;
   Duration _manualAdvance = Duration.zero;
+  bool _isFullScreen = false;
 
   bool get _isRunning => _runningStartedAt != null;
 
@@ -160,6 +161,47 @@ class _MeetingCostScreenState extends State<MeetingCostScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isCompact = MediaQuery.of(context).size.width < 780;
+
+    if (_isFullScreen) {
+      return Scaffold(
+        backgroundColor: const Color(0xFF06090E),
+        body: Stack(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 48),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: RollingCurrencyDisplay(
+                    value: _currentCost,
+                    style: theme.textTheme.displayLarge!.copyWith(
+                      fontSize: 300,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -6,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 24,
+              right: 24,
+              child: SafeArea(
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.fullscreen_exit,
+                    color: Colors.white54,
+                    size: 36,
+                  ),
+                  onPressed: () => setState(() => _isFullScreen = false),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
 
     final inputsPanel = _Panel(
       eyebrow: 'Meeting Inputs',
@@ -339,10 +381,7 @@ class _MeetingCostScreenState extends State<MeetingCostScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Meeting Cost Clock',
-                      style: theme.textTheme.displaySmall,
-                    ),
+                    Text('Burn Rate', style: theme.textTheme.displaySmall),
                     const SizedBox(height: 10),
                     Text(
                       'Turn attendee count and average annual salary into a live meeting burn meter. Start on time, or push the clock ahead when the meeting is already underway.',
@@ -358,6 +397,9 @@ class _MeetingCostScreenState extends State<MeetingCostScreen> {
                       hourlyRate: _hourlyRate,
                       cost: _currentCost,
                       compact: isCompact,
+                      onFullScreen: _hasValidInputs
+                          ? () => setState(() => _isFullScreen = true)
+                          : null,
                     ),
                     const SizedBox(height: 22),
                     LayoutBuilder(
@@ -406,6 +448,7 @@ class _DisplayCard extends StatelessWidget {
     required this.hourlyRate,
     required this.cost,
     required this.compact,
+    this.onFullScreen,
   });
 
   final bool isRunning;
@@ -416,6 +459,7 @@ class _DisplayCard extends StatelessWidget {
   final double hourlyRate;
   final double cost;
   final bool compact;
+  final VoidCallback? onFullScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -502,11 +546,23 @@ class _DisplayCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
-          Text(
-            'Live meeting cost',
-            style: theme.textTheme.titleLarge?.copyWith(
-              color: Colors.white.withValues(alpha: 0.84),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Live meeting cost',
+                style: theme.textTheme.titleLarge?.copyWith(
+                  color: Colors.white.withValues(alpha: 0.84),
+                ),
+              ),
+              if (onFullScreen != null)
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  icon: const Icon(Icons.fullscreen, color: Colors.white54),
+                  onPressed: onFullScreen,
+                ),
+            ],
           ),
           const SizedBox(height: 14),
           FittedBox(

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'meeting_cost_screen.dart';
 
-class MeetingCostClockApp extends StatelessWidget {
-  const MeetingCostClockApp({super.key});
+class BurnRateApp extends StatelessWidget {
+  const BurnRateApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class MeetingCostClockApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Meeting Cost Clock',
+      title: 'Burn Rate',
       theme: baseTheme.copyWith(
         colorScheme: colorScheme,
         scaffoldBackgroundColor: const Color(0xFF070B11),

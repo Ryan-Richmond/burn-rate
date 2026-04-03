@@ -91,29 +91,12 @@ class _RollingDigit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final floorValue = placeValue.floor();
-    final currentDigit = floorValue % 10;
-    final nextDigit = (currentDigit + 1) % 10;
-    final progress = placeValue - floorValue;
-    final height = size.height;
+    final currentDigit = placeValue.floor() % 10;
 
     return SizedBox(
       width: size.width,
-      height: height,
-      child: ClipRect(
-        child: Stack(
-          children: [
-            Transform.translate(
-              offset: Offset(0, -progress * height),
-              child: Text('$currentDigit', style: style),
-            ),
-            Transform.translate(
-              offset: Offset(0, height - (progress * height)),
-              child: Text('$nextDigit', style: style),
-            ),
-          ],
-        ),
-      ),
+      height: size.height,
+      child: Text('$currentDigit', style: style),
     );
   }
 }

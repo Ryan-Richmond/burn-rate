@@ -1,11 +1,11 @@
 {
-    "name": "Meeting Cost Clock",
-    "short_name": "MeetingClock",
+    "name": "Burn Rate",
+    "short_name": "Burn Rate",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#070B11",
     "theme_color": "#11151D",
-    "description": "A live meeting burn-rate timer for iOS, Android, and web.",
+    "description": "Burn Rate is a live meeting cost clock for iOS, Android, and web.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

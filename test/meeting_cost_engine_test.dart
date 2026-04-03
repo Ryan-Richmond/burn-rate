@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:meeting_cost_clock/meeting_cost_engine.dart';
+import 'package:burn_rate/meeting_cost_engine.dart';
 
 void main() {
   test('converts annual salary to an hourly burn rate', () {
