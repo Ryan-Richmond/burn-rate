@@ -13,9 +13,9 @@ class BurnRateApp extends StatelessWidget {
     );
 
     final colorScheme = ColorScheme.fromSeed(
-      seedColor: const Color(0xFFF59E0B),
+      seedColor: const Color(0xFFFFC566),
       brightness: Brightness.dark,
-      surface: const Color(0xFF131A23),
+      surface: const Color(0xFF090F16),
     );
 
     return MaterialApp(
@@ -23,7 +23,7 @@ class BurnRateApp extends StatelessWidget {
       title: 'Burn Rate',
       theme: baseTheme.copyWith(
         colorScheme: colorScheme,
-        scaffoldBackgroundColor: const Color(0xFF070B11),
+        scaffoldBackgroundColor: const Color(0xFF06090E),
         textTheme: baseTheme.textTheme.copyWith(
           displaySmall: baseTheme.textTheme.displaySmall?.copyWith(
             fontWeight: FontWeight.w700,
@@ -43,10 +43,10 @@ class BurnRateApp extends StatelessWidget {
         ),
         cardTheme: CardThemeData(
           elevation: 0,
-          color: const Color(0xFF111822),
+          color: const Color(0xFF0B121A),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(28),
-            side: BorderSide(color: Colors.white.withValues(alpha: 0.06)),
+            borderRadius: BorderRadius.circular(24),
+            side: BorderSide(color: Colors.white.withValues(alpha: 0.08)),
           ),
         ),
         inputDecorationTheme: InputDecorationTheme(

@@ -206,8 +206,6 @@ class _MeetingCostScreenState extends State<MeetingCostScreen> {
     final inputsPanel = _Panel(
       eyebrow: 'Meeting Inputs',
       title: 'Define the room',
-      subtitle:
-          'Salary is treated as yearly USD compensation and converted to hourly, then by the second using 2,080 working hours per year.',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -257,8 +255,6 @@ class _MeetingCostScreenState extends State<MeetingCostScreen> {
     final controlsPanel = _Panel(
       eyebrow: 'Controls',
       title: 'Run the meter',
-      subtitle:
-          'Use quick offsets when the timer starts late so the total reflects the real meeting cost, not just the visible clock time.',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -381,11 +377,20 @@ class _MeetingCostScreenState extends State<MeetingCostScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Burn Rate', style: theme.textTheme.displaySmall),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Turn attendee count and average annual salary into a live meeting burn meter. Start on time, or push the clock ahead when the meeting is already underway.',
-                      style: theme.textTheme.bodyLarge,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image.asset(
+                            'assets/images/app_icon.png',
+                            width: 64,
+                            height: 64,
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        Text('Burn Rate', style: theme.textTheme.displaySmall),
+                      ],
                     ),
                     const SizedBox(height: 24),
                     _DisplayCard(
@@ -593,13 +598,11 @@ class _Panel extends StatelessWidget {
   const _Panel({
     required this.eyebrow,
     required this.title,
-    required this.subtitle,
     required this.child,
   });
 
   final String eyebrow;
   final String title;
-  final String subtitle;
   final Widget child;
 
   @override
@@ -622,14 +625,6 @@ class _Panel extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(title, style: theme.textTheme.headlineMedium),
-            const SizedBox(height: 10),
-            Text(
-              subtitle,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: Colors.white.withValues(alpha: 0.7),
-                height: 1.5,
-              ),
-            ),
             const SizedBox(height: 22),
             child,
           ],
